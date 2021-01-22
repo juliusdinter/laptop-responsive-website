@@ -1,0 +1,288 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+}
+button{
+    font-family: 'Poppins', sans-serif;    /* gumbi ignoriraju font od body-a, zato je ovo potrebno*/
+}
+
+header{
+    display: flex;
+    width: 90%;
+    height: 10vh;
+    margin: auto;
+    align-items: center;
+}
+
+.logo-container, .nav-links, .cart{
+    display: flex;
+}
+
+.logo-container{
+    flex: 1;                     /*postavlja logo-container na punu širinu roditelja (header)*/
+}
+
+.logo{
+    font-weight: 400;
+    margin: 5px;
+}
+
+nav{
+    flex: 2;                    /*znači da će nav biti duplo veći od logo-container i cart*/
+}
+
+.nav-links{
+    justify-content: space-around;
+    list-style: none;
+}
+
+.nav-link{
+    color: #5f5f79;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.cart{
+    flex: 1;                    /*kada bi svu djecu headera postavili na flex: 1; svi bi zauzimali jednaki dio pune širine*/
+    justify-content: flex-end;
+}
+
+.presentation{
+    display: flex;
+    width: 90%;
+    margin: auto;
+    min-height: 80vh;
+    align-items: center;
+}
+
+.introduction{
+    flex: 1;
+}
+
+.intro-text h1{
+    font-size: 44px;
+    font-weight: 500;
+    background: linear-gradient(to right, #494964, #6f6f89);
+    -webkit-background-clip: text;           /* uzmi pozadinu i postavi je na text*/
+    -webkit-text-fill-color: transparent;    /*postavi pozadinu teksta transparentnu kako bi mogla "upiti" novu pozadinu */
+}
+
+.intro-text p{
+    margin-top: 5px;
+    font-size: 22px;
+    color: #585772;
+}
+
+.cta{
+    padding: 50px 0 0 0;
+}
+
+.cta-select{
+    border: 2px solid #c36cbb;
+    background: transparent;        /*prozirna pozadina*/
+    color: #c36cbb;
+    width: 150px;
+    height: 50px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.cta-add{
+    background:  #c36cbb;
+    width: 150px;
+    height: 50px;
+    cursor: pointer;
+    font-size: 16px;
+    border: none;
+    color: white;
+    margin: 30px 0px 0px 30px;
+}
+
+.cover{
+    flex: 1;
+	display: flex;
+	justify-content: center;
+	height: 60vh;
+}
+
+.cover img{
+    height: 100%;
+    filter: drop-shadow(0 5px 3px black);   /* za postavljanje sjene na format slike (png) u ovom slučaju*/
+    animation: drop 1.5s ease;
+}
+
+.big-circle{
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: -1;
+    opacity: 0.6;
+    height: 80%;          /*postavlja sliku na 80% od visine browsera, korisno kod centriranja stranice jer slika ne "bježi" po ekranu*/
+}
+
+.medium-circle{
+    position: absolute;
+    top: 30%;
+    right: 30%;
+    z-index: -1;
+    height: 60%;
+    opacity: 0.5;
+}
+
+.small-circle{
+    position: absolute;
+    bottom: 0%;
+    left: 25%;
+    height: 35%;
+    z-index: -1;
+}
+
+.laptop-select{
+    width: 15%;
+    display: flex;
+    justify-content: space-around;
+    position: absolute;
+    right: 20%;
+}
+
+@keyframes drop{
+    0%{
+        opacity: 0;
+        transform: translateY(-80px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+
+}
+
+@media screen and (max-width: 1110px){
+    .presentation{
+        flex-direction: column;
+    }
+    .introduction{
+        margin-top: 5vh;
+        text-align: center;
+    }
+    .intro-text h1{
+        font-size: 30px;
+    }
+    .intro-text p{
+        font-size: 18px;
+    }
+    .cta{
+        padding: 10px 0px 0px 0px;
+    }
+    .laptop-select{
+        bottom: 5%;
+		right: 50%;
+		width: 25%;
+        transform: translate(50%, 5%);  /*vraća na poziciju, 
+        jer bi ga ove zadane margine slupale previše udesno*/
+    }
+    .cover img {
+        height: 80%;
+        margin-top: 10px;
+    }
+    .small-circle,
+	.medium-circle,
+	.big-circle {
+		opacity: 0.2;
+	}
+}
+@media screen and (max-width: 600px) and (min-width: 200px){
+    main{
+        width: 100%;
+    }
+    .presentation{
+        width: 100%;
+    }
+    .cover{
+        width: 100%;
+    }
+    .laptop-select{
+        width: 50%;
+    }
+    .menu-btn{
+        flex: none;
+        position: absolute;
+        right: 15%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        transition: all .5s ease-in-out;
+        flex-direction: column;
+    }
+    .menu-burger{
+        width: 30px;
+        height: 4px;
+        background: #5f5f79;
+        border-radius: 5px;
+        transition: all .5s ease-in-out;
+    }
+    .menu-burger::before, .menu-burger::after{
+        content: '';
+        position: absolute;
+        width: 30px;
+        height: 4px;
+        background: #5f5f79;
+        border-radius: 5px;
+        transition: all .5s ease-in-out;
+    }
+    .menu-burger::before{
+        transform: translateY(-10px);
+    }
+    .menu-burger::after{
+        transform: translateY(10px);
+    }
+    .menu-btn li{
+        display: none;
+    }
+    /* ANIMATION */
+    .menu-btn.open .nav-links {
+        background-color: #c36cbb;
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        z-index: 100;
+        flex-direction: column;
+        align-items: center;
+        -webkit-clip-path: circle(1000px at 90% -10%);
+        transition: background-color .5s ease-in-out;
+    }
+    .nav-links a{
+        color: white;
+    }
+    .menu-btn.open li{
+        display: block;
+    }
+    .menu-btn.open .menu-burger{
+        background: transparent;
+    }
+    .menu-btn.open .menu-burger::before{
+        background: white;
+        z-index: 101;
+        transform: rotate(45deg);
+    }
+    .menu-btn.open .menu-burger::after{
+        background: white;
+        z-index: 101;
+        transform: rotate(-45deg);
+    }
+    .small-circle{
+        width: 1vw;
+    }
+}
